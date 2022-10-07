@@ -11,5 +11,6 @@ public interface FRAService {
 	List<FundRaisingActivity> getAllFundRaisingActivities();
 	FundRaisingActivity getFundRaisingActivityById(int id);
 	void deleteFundRaisingActivityById(int id);
+	FundRaisingActivity getFundRaisingActivityByName(String name);
 
 }

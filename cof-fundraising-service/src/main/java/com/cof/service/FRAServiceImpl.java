@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cof.entity.FundRaisingActivity;
-import com.cof.repository.PublicFundRaisingActivityRepository;
+import com.cof.repository.FundRaisingActivityRepository;
 
 @Service
 public class FRAServiceImpl implements FRAService {
 	
 	@Autowired
-	PublicFundRaisingActivityRepository repository;
+	FundRaisingActivityRepository repository;
 	
 
 	@Override
@@ -32,6 +32,7 @@ public class FRAServiceImpl implements FRAService {
 		pfraFromDb.setWithdrawalDate(publicFRA.getWithdrawalDate());
 		
 		return repository.saveAndFlush(pfraFromDb);
+		
 	}
 
 	@Override
@@ -51,6 +52,11 @@ public class FRAServiceImpl implements FRAService {
 		
 		repository.deleteById(id);
 		
+	}
+	
+	public FundRaisingActivity getFundRaisingActivityByName(String name) {
+		
+		return repository.findFundRaisingActivityByfundraiserName(name);
 	}
 
 }

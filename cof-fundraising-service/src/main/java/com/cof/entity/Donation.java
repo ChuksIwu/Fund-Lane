@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +29,8 @@ public class Donation {
 	private int donorName;
 	@Column(name = "beneficiary_id")
 	private int beneficiaryId;
+	@Column(name = "payment_status")
+	private String paymentStatus;
 	@Column(name = "is_visible_to_beneficiary")
 	private boolean isVisibleToBeneficiary;
 	@Column(name = "fundraising_activity_id")

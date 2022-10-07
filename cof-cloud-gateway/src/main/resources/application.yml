@@ -1,0 +1,43 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway:
+            route:
+              RouteDefinitionLocator: info
+    root: info
+server:
+  port: 8989
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+      - id: user-service
+        predicates:
+        - Path=/api/user/**
+        uri: lb://user-service
+      - id: fund-raising-service
+        predicates:
+        - Path=/api/activity/**
+        uri: lb://fund-raising-service
+      - filters:
+        - SetPath=/
+        id: discovery-service
+        predicates:
+        - Path=/eureka/web
+        uri: http://localhost:8761
+      - id: discovery-service-static
+        predicates:
+        - Path=/eureka/**
+        uri: http://localhost:8761
